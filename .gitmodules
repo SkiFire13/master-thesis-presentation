@@ -1,0 +1,3 @@
+[submodule "typst-slides-unipd"]
+	path = typst-slides-unipd
+	url = https://github.com/skiFire13/typst-slides-unipd
