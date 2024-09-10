@@ -12,21 +12,27 @@
   date: [September 20, 2024],
 )
 
+// Give some context, formal verification of software important
+// Among the various tools there ...
+// All have in common one thing and is using fixpoints.
 #new-section[The problem]
 #slide[
   Formal verification of software is increasingly more important.
 
   - *Model checking* for logics like $mu$-calculus, to prove properties of labelled transition systems;
 
-  - *Abstract interpretation* to compute an approximation of the set of possible values in a program;
+  - *Abstract interpretation* to compute an approximation of the set of possible states in a program;
 
-  - *Behavioral equivalences*, like bisimilarity;
+  - Checking *behavioral equivalences*, like bisimilarity;
 
   - ...
 
-  All depend on fixpoints in some way.
+  All use fixpoints in some way.
 ]
 
+// We will focus on systems of fixpoint equations. Fixpoint equations are equations where the output of a function is equal to its input and with systems of them we have n variables which are the inputs of n functions whose outputs must be equal to those variables.
+// Such equations are not guaranteed to have a solution, but we assume to work over a complete lattice L and monotone function, in which case the Knaster-Tarski theorem guarantees its existence. We can still have more than one solution, and so we are interested in the least or greatest one.
+// The solution is defined inductively by fixing the last variable and solving the rest parameterized by it, then solving the last fixpoint equation and substituting back. Note that this means that the order of the equations matter.
 #new-section[Systems of fixpoint equations]
 #slide[
   $
@@ -45,9 +51,11 @@
   - $eta_i in {mu, nu}$ and can be mixed
 ]
 
+// To give an example of how systems of fixpoint equations come up, we briefly introduce the mu calculus, which allows to express properties of states of labelled transition systems. These are directed graphs where vertices are states and edges represent transitions between them with a given label.
+// Mu calculus is then a modal logic, so it has the usual logic operators, plus the modal operators, which allow to express properties that hold after any or all transitions with a given set of labels. Moreover it is equipped with fixpoint operators, which allow to express recursive properties, for example properties that hold on a state and after any number of transitions. 
 #new-section[$mu$-calculus]
 #slide[
-  - Labelled transition system
+  - Labelled transition system $(bb(S), ->)$
 
   #align(center, diagram(
     node-stroke: 1pt,
@@ -80,6 +88,9 @@
 //   TODO: $mu$-calculus example
 // ]
 
+// Mu-calculus formulas can be translated to systems of fixpoint equations over the powerset lattice of the states, meaning that the functions involved will operate over subsets of the set of states.
+// This can be done by extracting each fixpoint formula into its own equation, with the outmost formulas placed later in the system.
+// Finally, I want to note that the solution is the set of all states that satisfy the formula, though we may be interested only in whether a specific state satisfies it.
 #slide[
   - System of fixpoint equations over $2^bb(S)$
 
@@ -93,14 +104,23 @@
       )
     $
 
-  - If the solution is $(s_1, s_2)$ then $s tack.r.double phi <=> s in s_2$
+  - Solution: all states satisfying the formulas
+
+  - If the solution is $(y, x)$ then $s tack.r.double phi <=> s in x$
 ]
 
+// We will solve systems of fixpoint equations by characterizing they solutions. In particular we consider a basis, that is a subset of the lattice through which we can express all the other elements by means of join. For example in the mu-calculus case we can express any subset of the set of states as join of singleton sets. Then we characterize the solution by whether an element of the basis is under it, for example with the mu-calculus this would mean deciding whether a singleton set is included in the solution, that is whether a specific state satisfies the formula, which was our actual goal.
+// We decide this characterization by using a powerset game, that is a particular parity game. Parity games are games played on a directed graph where
+
+// Characterization as relation with elements of a basis
+// Powerset game as parity game, played on directed graph etc
+// Positions on the graph are (see table)
+// Positions correspond to the fact that b sub si
 #new-section[Game characterization]
 #slide[
-  - Given basis $B_L$, determine whether $b sub s_i$ for $b in B_L$
+  - Given basis $B_L$, determine whether $b sub x_i$ for $b in B_L$
 
-  - Can be done with a *Parity Game*, the *Powerset Game*
+  - *Powerset Game*
 
     #table(
       columns: 3,
@@ -112,11 +132,12 @@
       [1], $tup(X) = (X_1, ..., X_n)$, [$[b, i]$ s.t. $b in X_i$]
     )
 
-    // Note: how to determine winner?
-    // Note: idea goes well with local approach
+    // TODO: how to determine winner?
+    // TODO: idea goes well with local approach
 ]
 
 #slide[
+  // TODO: Explain better what is this system
   $
     syseq(
       x_1 &feq_mu x_1 or x_2 \
@@ -237,12 +258,18 @@
 
     - Translation for $mu$-calculus, bisimilarity and parity games
 
-  - Supports extensions for other instances of systems of fixpoint equations
-
   - Improves over the predecessor by an order of magnitude in some test cases
 ]
 
-#new-section[Conclusions]
+#new-section[Future work]
 #slide[
-  
+  - Other parity game algorithms
+
+  - Better expansion strategy
+
+  - Alternative data structures for symbolic moves (BDDs)
+
+  - Integrate up-to techniques and abstractions
+
+  - Translate other problems
 ]
