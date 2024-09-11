@@ -27,7 +27,7 @@
 
   - ...
 
-  All use fixpoints in some way.
+  Fixpoints are present in all of them.
 ]
 
 // We will focus on systems of fixpoint equations. Fixpoint equations are equations where the output of a function is equal to its input and with systems of them we have n variables which are the inputs of n functions whose outputs must be equal to those variables.
@@ -109,7 +109,7 @@
   - If the solution is $(y, x)$ then $s tack.r.double phi <=> s in x$
 ]
 
-// We will solve systems of fixpoint equations by characterizing they solutions. In particular we consider a basis, that is a subset of the lattice through which we can express all the other elements by means of join. For example in the mu-calculus case we can express any subset of the set of states as join of singleton sets. Then we characterize the solution by whether an element of the basis is under it, for example with the mu-calculus this would mean deciding whether a singleton set is included in the solution, that is whether a specific state satisfies the formula, which was our actual goal.
+// We will solve systems of fixpoint equations by characterizing their solutions. In particular we consider a basis, that is a subset of the lattice through which we can express all the other elements by means of join. For example in the mu-calculus case we can express any subset of the set of states as join of singleton sets. Then we characterize the solution by whether an element of the basis is under it, for example with the mu-calculus this would mean deciding whether a singleton set is included in the solution, that is whether a specific state satisfies the formula, which was our actual goal.
 // We decide this characterization by using a powerset game, that is a particular parity game. Parity games are games played on a directed graph where
 
 // Characterization as relation with elements of a basis
@@ -198,9 +198,9 @@
 
   - *Selections*: subset of moves equivalent to the full set
 
-  - *Symbolic moves*: represent moves using logic formulas
+  - *Symbolic moves*:
     
-    - compact representation
+    - compact representation using logic formulas
 
     - allows for simplifications
 ]
@@ -213,9 +213,11 @@
 
   - Criteria: *play profiles*
 
-    - observation of how "good" a play is
+    - estimation of how "good" a play is
 
     - computation can be expensive
+
+    - depends only on the play
 
   // TODO: Example in two steps?
 ]
@@ -224,20 +226,22 @@
 #slide[
   - Local algorithm
 
-  #v(1em)
-
   - Find optimal strategy on a *subgame*
+
+    - subset of vertices
 
   - Check if one player can force winning plays in the subgame
 
   - Otherwise *expand* the game
+
+    - according to an expansion strategy
 ]
 
 #new-section[Adapting the algorithm]
 #slide[
   - Goal: solve the powerset game using local strategy iteration
 
-  - Challenges derived by the different assumptions
+  - Challenges caused by the different assumptions
 
     - Preventing finite plays
 
