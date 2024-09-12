@@ -84,10 +84,6 @@
   $
 ]
 
-// #slide[
-//   TODO: $mu$-calculus example
-// ]
-
 // Mu-calculus formulas can be translated to systems of fixpoint equations over the powerset lattice of the states, meaning that the functions involved will operate over subsets of the set of states.
 // This can be done by extracting each fixpoint formula into its own equation, with the outmost formulas placed later in the system.
 // Finally, I want to note that the solution is the set of all states that satisfy the formula, though we may be interested only in whether a specific state satisfies it.
@@ -248,6 +244,104 @@
       - Simplification while iterating moves
 
   - Improvement: computing play profiles when expanding vertices
+]
+
+#slide[
+  - Goal: solve the powerset game using local strategy iteration
+
+  - Challenges caused by the different assumptions
+]
+
+#slide(title: [#h(1em)Challenges])[
+  - Prevent finite plays
+  
+  #v(1em)
+
+  #let a = (0, 0)
+  #let b = (1, 0)
+  #let c = (1, 0.9)
+  #let d = (0, 0.9)
+  #let e = (2, 0.45)
+  #let f = (3, 0)
+  #let g = (3, 0.9)
+  #let w = (s, n) => if s { n } else { fletcher.hide(n) }
+  #let diag = s => diagram(
+    node-stroke: 1pt,
+    spacing: 4em,
+    label-sep: 3pt,
+
+    node(a, "", radius: 0.7em, shape: fletcher.shapes.rect),
+    node(b, "", radius: 0.7em),
+    node(c, "", radius: 0.7em, shape: fletcher.shapes.rect),
+    node(d, "", radius: 0.7em),
+    node(e, "", radius: 0.7em, shape: fletcher.shapes.rect),
+    w(s, node(f, "", radius: 0.7em)),
+    w(s, node(g, "", radius: 0.7em, shape: fletcher.shapes.rect)),
+
+    edge(a, b, "-|>"),
+    edge(b, c, "-|>"),
+    edge(c, d, "-|>"),
+    edge(d, a, "-|>"),
+    edge(b, e, "-|>"),
+    w(s, edge(e, f, "-|>")),
+    w(s, edge(f, g, "-|>", bend: 30deg)),
+    w(s, edge(g, f, "-|>", bend: 30deg)),
+  )
+  
+  #only(1)[#align(center, diag(false))]
+  #only(2)[#align(center, diag(true))]
+]
+
+#slide(title: [#h(1em)Challenges])[
+  - Generalizing subgames to subsets of edges
+  
+  #v(1em)
+
+  #let a = (0, 0.5)
+  #let b = (0.9, 0)
+  #let c = (0.9, 1)
+  #let d = (1.8, 0.5)
+  #align(center, diagram(
+    node-stroke: 1pt,
+    spacing: 4em,
+    label-sep: 3pt,
+
+    node(a, "", radius: 0.7em),
+    node(b, "", radius: 0.7em, shape: fletcher.shapes.rect),
+    node(c, "", radius: 0.7em, shape: fletcher.shapes.rect),
+    node(d, "", radius: 0.7em),
+
+    edge(a, b, "-|>", bend: 20deg),
+    edge(b, a, "-|>", bend: 20deg),
+    edge(a, c, "-|>", bend: -20deg),
+    edge(c, a, "-->", bend: -20deg),
+    edge(d, b, "-->", bend: -20deg),
+    edge(c, d, "-|>", bend: -20deg),
+    edge(d, c, "-|>", bend: -20deg),
+
+    edge(d, (2.5, 0.7), "-->"),
+    edge(d, (2.5, 0.3), "-->"),
+  ))
+]
+
+#slide(title: [#h(1em)Challenges])[
+  - Making the symbolic moves generator lazy
+
+  - Simplification while iterating moves
+
+  $
+    tup(X)_1, tup(X)_2, ..., overbrace(tup(X)_k, "current"), tup(X)_(k+1), ... tup(X)_m \
+    arrow.b.double \
+    tup(X)_2, tup(X)_5, ..., tup(X)_(k-1), underbrace(tup(X)_(k+1), "current"), ..., tup(X)_(m-1)
+  $
+]
+
+#slide(title: [#h(1em)Improvements])[
+  - Computing play profiles when expanding vertices
+
+  - Expansion scheme with better upper bound
+
+  - Graph simplification
 ]
 
 #new-section[Implementation]
