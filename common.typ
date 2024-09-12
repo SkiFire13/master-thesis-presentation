@@ -13,4 +13,4 @@
 #let sub = math.class("relation", sym.subset.eq.sq)
 #let join = math.class("vary", sym.union.sq)
 
-
+#let us = sym.mu + "s"

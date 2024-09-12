@@ -95,12 +95,12 @@
   - System of fixpoint equations over $2^bb(S)$
 
   // TODO: Rework example
-  - Example: $phi = nu x.#h(5pt) mu y.#h(5pt) (P and diam(A) x) or diam(A) y$
+  - Example: $phi = nu x.#h(5pt) (mu y.#h(5pt) (P or diam(A) y)) and boxx(A) x$
 
     $
       syseq(
-        y &feq_mu (P and diam(A) x) or diam(A) y \
-        x &feq_nu y
+        y &feq_mu P or diam(A) y \
+        x &feq_nu y and boxx(A) x
       )
     $
 
@@ -111,11 +111,6 @@
 
 // We will solve systems of fixpoint equations by characterizing their solutions. In particular we consider a basis, that is a subset of the lattice through which we can express all the other elements by means of join. For example in the mu-calculus case we can express any subset of the set of states as join of singleton sets. Then we characterize the solution by whether an element of the basis is under it, for example with the mu-calculus this would mean deciding whether a singleton set is included in the solution, that is whether a specific state satisfies the formula, which was our actual goal.
 // We decide this characterization by using a powerset game, that is a particular parity game. Parity games are games played on a directed graph where
-
-// Characterization as relation with elements of a basis
-// Powerset game as parity game, played on directed graph etc
-// Positions on the graph are (see table)
-// Positions correspond to the fact that b sub si
 #new-section[Game characterization]
 #slide[
   - Given basis $B_L$, determine whether $b sub x_i$ for $b in B_L$
@@ -136,6 +131,7 @@
     // TODO: idea goes well with local approach
 ]
 
+// Example system of fixpoint equations over boolean lattice. Basis is just true. Show transitions. Note on ({true},{true}) being useless from [true, 1].
 #slide[
   // TODO: Explain better what is this system
   $
@@ -211,13 +207,13 @@
 
   - Idea: improve strategy for player 0 until optimal
 
-  - Criteria: *play profiles*
+  - Criteria: *play profiles*, estimating how "good" a play is
 
-    - estimation of how "good" a play is
-
-    - computation can be expensive
-
-    - depends only on the play
+    - $w$, the most relevant vertex of the cycle
+    
+    - $P$, the visited vertices more relevant than $w$
+    
+    - $e$, the number of vertices visited before $w$
 
   // TODO: Example in two steps?
 ]
@@ -263,6 +259,19 @@
     - Translation for $mu$-calculus, bisimilarity and parity games
 
   - Improves over the predecessor by an order of magnitude in some test cases
+
+  #align(center, table(
+    columns: (auto,) * 3,
+    align: horizon,
+    inset: (x: 1em),
+    stroke: none,
+    table.header([$n$], [*Our solver*], [*LCSFE*]),
+    table.hline(),
+    [2], [132 #us], [65.5 #us],
+    [3], [212 #us], [195 #us],
+    [4], [2.30 ms], [4.38 ms],
+    [5], [202 ms],  [5.90 s],
+  ))
 ]
 
 #new-section[Future work]
