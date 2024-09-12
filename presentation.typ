@@ -250,6 +250,8 @@
   - Goal: solve the powerset game using local strategy iteration
 
   - Challenges caused by the different assumptions
+
+  - Some improvements
 ]
 
 #slide(title: [#h(1em)Challenges])[
@@ -319,6 +321,12 @@
     edge(c, d, "-|>", bend: -20deg),
     edge(d, c, "-|>", bend: -20deg),
 
+    edge(a, (-0.7, 0.7), "-->"),
+    edge(a, (-0.7, 0.3), "-->"),
+    edge(b, (0.2, -0.2), "-->"),
+    edge(b, (1.6, -0.2), "-->"),
+    edge(c, (0.2, 1.2), "-->"),
+    edge(c, (1.6, 1.2), "-->"),
     edge(d, (2.5, 0.7), "-->"),
     edge(d, (2.5, 0.3), "-->"),
   ))
@@ -339,9 +347,9 @@
 #slide(title: [#h(1em)Improvements])[
   - Computing play profiles when expanding vertices
 
-  - Expansion scheme with better upper bound
+  - Expansion scheme with upper bound on number of iterations
 
-  - Graph simplification
+  - Graph simplification to remove vertices with determined winner
 ]
 
 #new-section[Implementation]
