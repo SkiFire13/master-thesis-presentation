@@ -7,6 +7,8 @@
 
 #let boxx(f) = $class("unary", [ #f ])$
 #let diam(f) = $class("unary", angle.l #f angle.r)$
+#let Inv = math.op("Inv")
+#let Even = math.op("Even")
 
 #let tup(a) = math.bold(a)
 #let varempty = text(font: "", sym.emptyset)

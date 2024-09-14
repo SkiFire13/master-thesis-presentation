@@ -8,6 +8,7 @@
 
 #title-slide(
   title: [Solving Systems of Fixpoint Equations via Strategy Iteration],
+  subtitle: [Master degree in Computer Science],
   authors: [Candidate: Giacomo Stevanato \ Supervisor: Prof. Paolo Baldan],
   date: [September 20, 2024],
 )
@@ -91,7 +92,7 @@
   - System of fixpoint equations over $2^bb(S)$
 
   // TODO: Rework example
-  - Example: $phi = nu x.#h(5pt) (mu y.#h(5pt) (P or diam(A) y)) and boxx(A) x$
+  - $phi = nu x.#h(5pt) (mu y.#h(5pt) P or diam(A) y) and boxx(A) x = Inv(Even(P))$
 
     $
       syseq(
@@ -387,4 +388,8 @@
   - Integrate up-to techniques and abstractions
 
   - Translate other problems
+]
+
+#filled-slide[
+  Thank you for your attention
 ]
