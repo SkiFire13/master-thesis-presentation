@@ -200,8 +200,6 @@
 
 #new-section[Strategy iteration]
 #slide[
-  - Global algorithm
-
   - Idea: improve strategy for player 0 until optimal
 
   - Criteria: *play profiles*, estimating how "good" a play is
@@ -212,7 +210,7 @@
     
     - $e$, the number of vertices visited before $w$
 
-  // TODO: Example in two steps?
+  - Global algorithm
 ]
 
 #new-section[Local strategy iteration]
@@ -231,22 +229,6 @@
 ]
 
 #new-section[Adapting the algorithm]
-#slide[
-  - Goal: solve the powerset game using local strategy iteration
-
-  - Challenges caused by the different assumptions
-
-    - Preventing finite plays
-
-    - Generalizing subgames to subsets of edges
-
-    - Making the symbolic moves generator lazy
-
-      - Simplification while iterating moves
-
-  - Improvement: computing play profiles when expanding vertices
-]
-
 #slide[
   - Goal: solve the powerset game using local strategy iteration
 
