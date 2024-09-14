@@ -1,0 +1,30 @@
+name: Build PDF
+on:
+  push:
+    branches: [ master ]
+permissions:
+  contents: write
+jobs:
+  build-pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+      - name: Build PDF
+        uses: docker://ghcr.io/typst/typst:latest
+        with:
+          args: typst compile presentation.typ
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: presentation.pdf
+          path: presentation.pdf
+          retention-days: 21
+      - name: Upload Release Asset
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+            gh release delete latest -y --cleanup-tag
+            gh release create latest presentation.pdf
