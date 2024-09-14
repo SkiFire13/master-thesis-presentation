@@ -363,13 +363,13 @@
 #slide[
   - Other parity game algorithms
 
+  - Translate other problems
+
   - Better expansion strategy
 
   - Alternative data structures for symbolic moves (BDDs)
 
   - Integrate up-to techniques and abstractions
-
-  - Translate other problems
 ]
 
 #filled-slide[
