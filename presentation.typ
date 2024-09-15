@@ -195,6 +195,8 @@
     
     - compact representation using logic formulas
 
+    - generate a small selection
+
     - allows for simplifications
 ]
 
