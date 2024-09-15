@@ -15,7 +15,7 @@ jobs:
       - name: Build PDF
         uses: docker://ghcr.io/typst/typst:latest
         with:
-          args: typst compile presentation.typ
+          args: typst compile presentation.typ --font-path=typst-slides-unipd
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
         with:
