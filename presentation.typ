@@ -1,5 +1,6 @@
 #import "@preview/cetz:0.2.2": canvas, draw, vector
 #import "@preview/fletcher:0.5.1" as fletcher: diagram, node, edge
+#import "@preview/pinit:0.2.0": *
 #import "@preview/polylux:0.3.1": *
 #import "typst-slides-unipd/unipd.typ": *
 #import "common.typ": *
@@ -8,7 +9,7 @@
 
 #title-slide(
   title: [Solving Systems of Fixpoint Equations via Strategy Iteration],
-  subtitle: [Master degree in Computer Science],
+  subtitle: [Master's degree in Computer Science],
   authors: [Candidate: Giacomo Stevanato \ Supervisor: Prof. Paolo Baldan],
   date: [September 20, 2024],
 )
@@ -17,7 +18,8 @@
 #slide[
   Formal verification of software is increasingly more important.
 
-  - *Model checking* for logics like $mu$-calculus, to prove properties of labelled transition systems;
+  // Example: sent message is eventually received
+  - *Model checking* for behavioral logics like $mu$-calculus, to prove system properties;
 
   - *Abstract interpretation* to compute an approximation of the set of possible states in a program;
 
@@ -25,25 +27,29 @@
 
   - ...
 
-  Fixpoints are present in all of them.
+  Fixpoints are an essential ingredient in all of them.
 ]
 
 #new-section[Systems of fixpoint equations]
 #slide[
-  $
-    syseq(
-      x_1 &feq_eta_1 &f_1 &(x_1, ..., x_n) \
-      x_2 &feq_eta_2 &f_2 &(x_1, ..., x_n) \
-          &#h(0.3em)dots.v \
-      x_n &feq_eta_n &f_n &(x_1, ..., x_n) \
-    )
-  $
+  #one-by-one(mode: "transparent")[
+    $
+      syseq(
+        x_1 &feq_eta_1 &f_1 &(x_1, ..., x_n) \
+        x_2 &feq_eta_2 &f_2 &(x_1, ..., x_n) \
+            &#h(0.3em)dots.v \
+        x_n &feq_eta_n &f_n &(x_1, ..., x_n) \
+      )
+    $
+  ][
 
-  - Defined over a complete lattice $L$
+    - Defined over a complete lattice $L$
 
-  - Monotone functions $f_i$
+    - Monotone functions $f_i$
+  ][
 
-  - $eta_i in {mu, nu}$ and can be mixed
+    - $eta_i in {mu, nu}$ and can be mixed
+  ]
 ]
 
 #new-section[$mu$-calculus]
@@ -78,25 +84,36 @@
 ]
 
 #slide[
-  - System of fixpoint equations over $2^bb(S)$
+  #one-by-one(mode: "transparent")[
+    - System of fixpoint equations over $2^bb(S)$
+  ][
 
-  - $phi = nu x.#h(5pt) (mu y.#h(5pt) P or diam(A) y) and boxx(A) x = Inv(Even(P))$
-
+    - $phi = nu x.#h(5pt) (mu y.#h(5pt) P or diam(A) y) and boxx(A) x #pin("phi")$
+  ][
+    #context pinit-point-from(
+      pin-dy: 0pt,
+      offset-dx: 90pt, offset-dy: -20pt,
+      body-dy: -20pt,
+      fill: text.fill,
+      "phi", rect(inset: 0.5em, stroke: text.fill)[$Inv(Even(P))$]
+    )
+  ][
     $
       syseq(
         y &feq_mu P or diam(A) y \
         x &feq_nu y and boxx(A) x
       )
     $
+  ][
+    - *Solution*: all states satisfying the formulas
 
-  - Solution: all states satisfying the formulas
-
-  - If the solution is $(y, x)$ then $s tack.r.double phi <=> s in x$
+    - If the solution is $(S_y, S_x)$ then $s tack.r.double phi <=> s in S_x$
+  ]
 ]
 
 #new-section[Game characterization]
 #slide[
-  - Given basis $B_L$, determine whether $b sub x_i$ for $b in B_L$
+  - Given basis $B_L$, determine whether $b sub s_i$ for $b in B_L$
 
   - *Powerset Game*
 
@@ -172,47 +189,63 @@
 
 #new-section[Selections and symbolic moves]
 #slide[
-  - Problem: player 0 has lot of moves
-
-  - *Selections*: subset of moves equivalent to the full set
-
-  - *Symbolic moves*:
+  #one-by-one(mode: "transparent")[
     
-    - compact representation using logic formulas
+    - Problem: player 0 has lot of moves
+  ][
 
-    - generate a small selection
+    - *Selections*: subset of moves equivalent to the full set
+  ][
 
-    - allows for simplifications
+    - *Symbolic moves*:
+      
+      - compact representation using logic formulas
+
+      - generate a small selection
+
+      - allows for simplifications
+  ]
 ]
 
 #new-section[Strategy iteration]
 #slide[
-  - Idea: improve strategy for player 0 until optimal
+  #one-by-one(mode: "transparent")[
+  
+    - Idea: improve strategy for player 0 until optimal
+  ][
+  
+    - Criteria: *play profiles*, ordered $(w, P, e)$
 
-  - Criteria: *play profiles*, estimating how "good" a play is
+      - $w$, the most relevant vertex of the cycle
+      
+      - $P$, the visited vertices more relevant than $w$
+      
+      - $e$, the number of vertices visited before $w$
+  ][
 
-    - $w$, the most relevant vertex of the cycle
-    
-    - $P$, the visited vertices more relevant than $w$
-    
-    - $e$, the number of vertices visited before $w$
-
-  - Global algorithm
+    - Issue: global algorithm
+  ]
 ]
 
 #new-section[Local strategy iteration]
 #slide[
-  - Local algorithm
+  #one-by-one(mode: "transparent")[
+  
+    - Local algorithm
+  ][
 
-  - Find optimal strategy on a *subgame*
+    - Find optimal strategy on a *subgame*
 
-    - subset of vertices
+      - game on a subset of vertices
+  ][
 
-  - Check if one player can force winning plays in the subgame
+    - Check if one player can force winning plays in the subgame
+  ][
 
-  - Otherwise *expand* the game
+    - Otherwise *expand* the game
 
-    - according to an expansion strategy
+      - according to an expansion strategy
+  ]
 ]
 
 #new-section[Adapting the algorithm]
@@ -247,17 +280,17 @@
     node(c, "", radius: 0.7em, shape: fletcher.shapes.rect),
     node(d, "", radius: 0.7em),
     node(e, "", radius: 0.7em, shape: fletcher.shapes.rect),
-    w(s, node(f, "", radius: 0.7em)),
-    w(s, node(g, "", radius: 0.7em, shape: fletcher.shapes.rect)),
+    w(s, node(f, "", radius: 0.7em, stroke: blue)),
+    w(s, node(g, "", radius: 0.7em, stroke: blue, shape: fletcher.shapes.rect)),
 
     edge(a, b, "-|>"),
     edge(b, c, "-|>"),
     edge(c, d, "-|>"),
     edge(d, a, "-|>"),
     edge(b, e, "-|>"),
-    w(s, edge(e, f, "-|>")),
-    w(s, edge(f, g, "-|>", bend: 30deg)),
-    w(s, edge(g, f, "-|>", bend: 30deg)),
+    w(s, edge(e, f, "-|>", stroke: blue)),
+    w(s, edge(f, g, "-|>", bend: 30deg, stroke: blue)),
+    w(s, edge(g, f, "-|>", bend: 30deg, stroke: blue)),
   )
   
   #only(1)[#align(center, diag(false))]
@@ -286,8 +319,8 @@
     edge(a, b, "-|>", bend: 20deg),
     edge(b, a, "-|>", bend: 20deg),
     edge(a, c, "-|>", bend: -20deg),
-    edge(c, a, "-->", bend: -20deg),
-    edge(d, b, "-->", bend: -20deg),
+    edge(c, a, "-->", bend: -20deg, stroke: blue + 2.5pt),
+    edge(d, b, "-->", bend: -20deg, stroke: blue + 2.5pt),
     edge(c, d, "-|>", bend: -20deg),
     edge(d, c, "-|>", bend: -20deg),
 
@@ -315,11 +348,11 @@
 ]
 
 #slide(title: [#h(1em)Improvements])[
-  - Computing play profiles when expanding vertices
+  - Computing *play profiles* when expanding vertices
 
-  - Expansion scheme with upper bound on number of iterations
+  - *Expansion scheme* with upper bound on number of iterations
 
-  - Graph simplification to remove vertices with determined winner
+  - *Graph simplification* to remove vertices with determined winner
 ]
 
 #new-section[Implementation]
@@ -350,13 +383,13 @@
 #slide[
   - Other parity game algorithms
 
-  - Translate other problems
+  - Translating other problems
 
   - Better expansion strategy
 
   - Alternative data structures for symbolic moves (BDDs)
 
-  - Integrate up-to techniques and abstractions
+  - Integrating abstractions techniques
 ]
 
 #filled-slide[
