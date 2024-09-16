@@ -113,78 +113,61 @@
 
 #new-section[Game characterization]
 #slide[
-  - Given basis $B_L$, determine whether $b sub s_i$ for $b in B_L$
+  #one-by-one(mode: "transparent")[
+    - Given basis $B_L$, determine whether $b sub s_i$ for $b in B_L$
+  ][
 
-  - *Powerset Game*
+    - *Powerset Game*
 
-    #table(
-      columns: 3,
-      inset: (x: 16pt, y: 10pt),
-      stroke: none,
-      table.header([Player], table.vline(), [Positions], table.vline(),[Moves]),
-      table.hline(),
-      [0], $[b, i]$, [$tup(X)$ s.t. $b sub f_i (join tup(X))$],
-      [1], $tup(X) = (X_1, ..., X_n)$, [$[b, i]$ s.t. $b in X_i$]
-    )
+      #align(center, alternatives-fn(count: 5, i => {
+        let bi = (0, 0)
+        let cj = (2.4, -0.4)
+        let dk = (2.4, 0.4)
+        let X = (1.2, -0.4)
+        let Y = (1.2, 0.4)
+        let Z = (3.4, 0.4)
 
-    // TODO: how to determine winner?
-    // TODO: idea goes well with local approach
-]
+        let note0 = (0.3, -0.7)
+        let noteX = (1.6, -1.1)
+        let note1 = (2.8, -1.1)
 
-#slide[
-  // TODO: Explain better what is this system?
-  $
-    syseq(
-      x_1 &feq_mu x_1 or x_2 \
-      x_2 &feq_nu x_1 and x_2 \ 
-    )
-  $
+        let color = k => if i < k { gray.lighten(50%) } else { black }
 
-  #v(1em)
+        let n0 = (p, c, k) => node(p, text(fill: color(k), c), radius: 1.5em, stroke: color(k))
+        let n1 = (p, c, k) => node(p, text(fill: color(k), c), inset: 1em, stroke: color(k), shape: fletcher.shapes.rect)
 
-  #align(center, canvas({
-    import draw: *
+        let e = (f, t, k) => edge(f, t, "-|>", stroke: color(k))
 
-    set-style(content: (padding: .2), stroke: black)
+        diagram(
+          node-stroke: 1pt,
+          label-sep: 3pt,
 
-    let node(pos, name, p, label, pr) = {
-      let cname = name + "content"
-      content(pos, label, name: cname, padding: 0.6em)
-      if p == 0 {
-        circle(pos, name: name, radius: (2, 1), stroke: black)
-        content((v => vector.add(v, (0, .15)), cname + ".south"), text(size: 18pt, str(pr)))
-      } else {
-        let (x, y) = pos
-        rect(cname + ".north-west", cname + ".south-east", name: name, radius: 0.05)
-        content((v => vector.add(v, (-.3, .3)), cname + ".south-east"), text(size: 18pt, str(pr)))
-      }
-    }
+          n0(bi, $[b, i]$, 2),
+          n1(X, $tup(X)$, 3),
+          n1(Y, $tup(Y)$, 3),
+          n0(cj, $[c, j]$, 4),
+          n0(dk, $[d, k]$, 4),
+          n1(Z, $tup(Z)$, 5),
 
-    node((6.5, 0), "t1", 0, $[tt, 1]$, 1)
-    node((6.5, -3), "t2", 0, $[tt, 2]$, 2)
-    
-    node((0, 0), "tt_e", 1, $({tt}, varempty)$, 0)
-    node((0, -3), "e_tt", 1, $(varempty, {tt})$, 0)
-    node((13.5, -1.5), "tt_tt", 1, $({tt}, {tt})$, 0)
+          e(bi, X, 3),
+          e(bi, Y, 3),
+          e(X, cj, 4),
+          e(Y, cj, 4),
+          e(Y, dk, 4),
+          e(dk, Z, 5),
+          edge(Z, (3.4, 0.8), (0, 0.8), bi, "-|>", stroke: color(5)),
 
-    let edge(ni, ai, nf, af, a, w) = {
-      let pi = (name: ni, anchor: ai)
-      let pf = (name: nf, anchor: af)
-      let c = if true and not w { (dash: "dotted") } else { black }
-      bezier(pi, pf, (pi, 50%, a, pf), fill: none, stroke: c, mark: (end: ">"))
-    }
+          node(note0, text(fill: color(3))[s.t. $b sub f_i (join X)$], inset: 11pt, stroke: color(3)),
+          edge(note0, (0.5, -0.2), "..>", stroke: color(3)),
 
-    edge("t1", 160deg, "tt_e", 20deg, -20deg, false)
-    edge("t1", 240deg, "e_tt", 20deg, 20deg, true)
-    edge("t1", 20deg, "tt_tt", 130deg, 20deg, false)
+          node(noteX, text(fill: color(3))[$tup(X) = (X_1, .., X_n)$], inset: 11pt, stroke: color(3)),
+          edge(noteX, X, "..>", stroke: color(3)),
 
-    edge("t2", -20deg, "tt_tt", -130deg, -20deg, true)
-
-    edge("tt_e", -20deg, "t1", 200deg, -20deg, false)
-    edge("e_tt", -20deg, "t2", 200deg, -20deg, false)
-    edge("tt_tt", 160deg, "t1", -20deg, 20deg, false)
-    edge("tt_tt", 200deg, "t2", 20deg, -20deg, false)
-  }))
+          node(note1, text(fill: color(4))[s.t. $c in X_j$], inset: 11pt, stroke: color(4)),
+          edge(note1, (1.8, -0.42), "..>", stroke: color(4)),
+        )
+      }))
+  ]
 ]
 
 #new-section[Selections and symbolic moves]
