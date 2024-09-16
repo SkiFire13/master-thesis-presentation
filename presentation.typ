@@ -13,9 +13,6 @@
   date: [September 20, 2024],
 )
 
-// Give some context, formal verification of software important
-// Among the various tools there ...
-// All have in common one thing and is using fixpoints.
 #new-section[The problem]
 #slide[
   Formal verification of software is increasingly more important.
@@ -31,9 +28,6 @@
   Fixpoints are present in all of them.
 ]
 
-// We will focus on systems of fixpoint equations. Fixpoint equations are equations where the output of a function is equal to its input and with systems of them we have n variables which are the inputs of n functions whose outputs must be equal to those variables.
-// Such equations are not guaranteed to have a solution, but we assume to work over a complete lattice L and monotone function, in which case the Knaster-Tarski theorem guarantees its existence. We can still have more than one solution, and so we are interested in the least or greatest one.
-// The solution is defined inductively by fixing the last variable and solving the rest parameterized by it, then solving the last fixpoint equation and substituting back. Note that this means that the order of the equations matter.
 #new-section[Systems of fixpoint equations]
 #slide[
   $
@@ -52,8 +46,6 @@
   - $eta_i in {mu, nu}$ and can be mixed
 ]
 
-// To give an example of how systems of fixpoint equations come up, we briefly introduce the mu calculus, which allows to express properties of states of labelled transition systems. These are directed graphs where vertices are states and edges represent transitions between them with a given label.
-// Mu calculus is then a modal logic, so it has the usual logic operators, plus the modal operators, which allow to express properties that hold after any or all transitions with a given set of labels. Moreover it is equipped with fixpoint operators, which allow to express recursive properties, for example properties that hold on a state and after any number of transitions. 
 #new-section[$mu$-calculus]
 #slide[
   - Labelled transition system $(bb(S), ->)$
@@ -85,13 +77,9 @@
   $
 ]
 
-// Mu-calculus formulas can be translated to systems of fixpoint equations over the powerset lattice of the states, meaning that the functions involved will operate over subsets of the set of states.
-// This can be done by extracting each fixpoint formula into its own equation, with the outmost formulas placed later in the system.
-// Finally, I want to note that the solution is the set of all states that satisfy the formula, though we may be interested only in whether a specific state satisfies it.
 #slide[
   - System of fixpoint equations over $2^bb(S)$
 
-  // TODO: Rework example
   - $phi = nu x.#h(5pt) (mu y.#h(5pt) P or diam(A) y) and boxx(A) x = Inv(Even(P))$
 
     $
@@ -106,8 +94,6 @@
   - If the solution is $(y, x)$ then $s tack.r.double phi <=> s in x$
 ]
 
-// We will solve systems of fixpoint equations by characterizing their solutions. In particular we consider a basis, that is a subset of the lattice through which we can express all the other elements by means of join. For example in the mu-calculus case we can express any subset of the set of states as join of singleton sets. Then we characterize the solution by whether an element of the basis is under it, for example with the mu-calculus this would mean deciding whether a singleton set is included in the solution, that is whether a specific state satisfies the formula, which was our actual goal.
-// We decide this characterization by using a powerset game, that is a particular parity game. Parity games are games played on a directed graph where
 #new-section[Game characterization]
 #slide[
   - Given basis $B_L$, determine whether $b sub x_i$ for $b in B_L$
@@ -128,9 +114,8 @@
     // TODO: idea goes well with local approach
 ]
 
-// Example system of fixpoint equations over boolean lattice. Basis is just true. Show transitions. Note on ({true},{true}) being useless from [true, 1].
 #slide[
-  // TODO: Explain better what is this system
+  // TODO: Explain better what is this system?
   $
     syseq(
       x_1 &feq_mu x_1 or x_2 \
