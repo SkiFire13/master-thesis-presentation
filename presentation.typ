@@ -119,8 +119,10 @@
 
     - *Powerset Game*
 
-      #align(center, alternatives-fn(count: 5, i => {
+      #align(center, alternatives-fn(count: 6, i => {
         let color = k => if i < k { gray.lighten(50%) } else { black }
+
+        let p_color = if i < 6 { black.lighten(100%) } else { blue }
 
         let n0 = (n, p, c, k) => node(name: n, p, text(fill: color(k), c), radius: 1.5em, stroke: color(k))
         let n1 = (n, p, c, k) => node(name: n, p, text(fill: color(k), c), inset: 1em, stroke: color(k), shape: fletcher.shapes.rect)
@@ -135,7 +137,7 @@
           n1(<X>, (1.2, -0.4), $tup(X)$, 3),
           n1(<Y>, (1.2, 0.4), $tup(Y)$, 3),
           n0(<cj>, (2.4, -0.4), $[c, j]$, 4),
-          n0(<di>, (2.4, 0.4), $[d, k]$, 4),
+          n0(<di>, (2.4, 0.4), $[d, i]$, 4),
           n1(<Z>, (3.4, 0.4), $tup(Z)$, 5),
 
           e(<bi>, <X>, 3),
@@ -146,17 +148,24 @@
           e(<di>, <Z>, 5),
           edge(<Z>, (3.4, 0.8), (0.5, 0.8), <bi>, "-|>", stroke: color(5)),
 
-          node((0, 0.8), text(fill: color(2))[$b sub s_i$], inset: 11pt, stroke: color(2)),
+          node((0, 0.8), text(fill: color(2))[$b sub s_i$], inset: 11pt, stroke: color(2), shape: fletcher.shapes.pill),
           edge(<bi>, "..>", stroke: color(2)),
 
-          node((0.3, -0.7), text(fill: color(3))[s.t. $b sub f_i (join X)$], inset: 11pt, stroke: color(3)),
+          node((0.3, -0.7), text(fill: color(3))[s.t. $b sub f_i (join X)$], inset: 11pt, stroke: color(3), shape: fletcher.shapes.pill),
           edge((0.5, -0.2), "..>", stroke: color(3)),
 
-          node((1.6, -1.1), text(fill: color(3))[$tup(X) = (X_1, .., X_n)$], inset: 11pt, stroke: color(3)),
+          node((1.6, -1.1), text(fill: color(3))[$tup(X) = (X_1, .., X_n)$], inset: 11pt, stroke: color(3), shape: fletcher.shapes.pill),
           edge(<X>, "..>", stroke: color(3)),
 
-          node((2.8, -1.1), text(fill: color(4))[s.t. $c in X_j$], inset: 11pt, stroke: color(4)),
+          node((2.8, -1.1), text(fill: color(4))[s.t. $c in X_j$], inset: 11pt, stroke: color(4), shape: fletcher.shapes.pill),
           edge((1.8, -0.42), "..>", stroke: color(4)),
+
+          node((rel: (0, 0.18), to: <bi>), text(fill: p_color, size: 19pt, $2$), stroke: none),
+          node((rel: (0, 0.18), to: <cj>), text(fill: p_color, size: 19pt, $5$), stroke: none),
+          node((rel: (0, 0.18), to: <di>), text(fill: p_color, size: 19pt, $2$), stroke: none),
+          node((rel: (0, 0.18), to: <X>), text(fill: p_color, size: 19pt, $0$), stroke: none),
+          node((rel: (0, 0.18), to: <Y>), text(fill: p_color, size: 19pt, $0$), stroke: none),
+          node((rel: (0, 0.18), to: <Z>), text(fill: p_color, size: 19pt, $0$), stroke: none),
         )
       }))
   ]
