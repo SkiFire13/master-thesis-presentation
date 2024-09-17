@@ -120,22 +120,10 @@
     - *Powerset Game*
 
       #align(center, alternatives-fn(count: 5, i => {
-        let bi = (0, 0)
-        let cj = (2.4, -0.4)
-        let dk = (2.4, 0.4)
-        let X = (1.2, -0.4)
-        let Y = (1.2, 0.4)
-        let Z = (3.4, 0.4)
-
-        let noteB = (0, 0.8)
-        let note0 = (0.3, -0.7)
-        let noteX = (1.6, -1.1)
-        let note1 = (2.8, -1.1)
-
         let color = k => if i < k { gray.lighten(50%) } else { black }
 
-        let n0 = (p, c, k) => node(p, text(fill: color(k), c), radius: 1.5em, stroke: color(k))
-        let n1 = (p, c, k) => node(p, text(fill: color(k), c), inset: 1em, stroke: color(k), shape: fletcher.shapes.rect)
+        let n0 = (n, p, c, k) => node(name: n, p, text(fill: color(k), c), radius: 1.5em, stroke: color(k))
+        let n1 = (n, p, c, k) => node(name: n, p, text(fill: color(k), c), inset: 1em, stroke: color(k), shape: fletcher.shapes.rect)
 
         let e = (f, t, k) => edge(f, t, "-|>", stroke: color(k))
 
@@ -143,32 +131,32 @@
           node-stroke: 1pt,
           label-sep: 3pt,
 
-          n0(bi, $[b, i]$, 2),
-          n1(X, $tup(X)$, 3),
-          n1(Y, $tup(Y)$, 3),
-          n0(cj, $[c, j]$, 4),
-          n0(dk, $[d, k]$, 4),
-          n1(Z, $tup(Z)$, 5),
+          n0(<bi>, (0, 0), $[b, i]$, 2),
+          n1(<X>, (1.2, -0.4), $tup(X)$, 3),
+          n1(<Y>, (1.2, 0.4), $tup(Y)$, 3),
+          n0(<cj>, (2.4, -0.4), $[c, j]$, 4),
+          n0(<di>, (2.4, 0.4), $[d, k]$, 4),
+          n1(<Z>, (3.4, 0.4), $tup(Z)$, 5),
 
-          e(bi, X, 3),
-          e(bi, Y, 3),
-          e(X, cj, 4),
-          e(Y, cj, 4),
-          e(Y, dk, 4),
-          e(dk, Z, 5),
-          edge(Z, (3.4, 0.8), (0.5, 0.8), bi, "-|>", stroke: color(5)),
+          e(<bi>, <X>, 3),
+          e(<bi>, <Y>, 3),
+          e(<X>, <cj>, 4),
+          e(<Y>, <cj>, 4),
+          e(<Y>, <di>, 4),
+          e(<di>, <Z>, 5),
+          edge(<Z>, (3.4, 0.8), (0.5, 0.8), <bi>, "-|>", stroke: color(5)),
 
-          node(noteB, text(fill: color(2))[$b sub s_i$], inset: 11pt, stroke: color(2)),
-          edge(noteB, bi, "..>", stroke: color(2)),
+          node((0, 0.8), text(fill: color(2))[$b sub s_i$], inset: 11pt, stroke: color(2)),
+          edge(<bi>, "..>", stroke: color(2)),
 
-          node(note0, text(fill: color(3))[s.t. $b sub f_i (join X)$], inset: 11pt, stroke: color(3)),
-          edge(note0, (0.5, -0.2), "..>", stroke: color(3)),
+          node((0.3, -0.7), text(fill: color(3))[s.t. $b sub f_i (join X)$], inset: 11pt, stroke: color(3)),
+          edge((0.5, -0.2), "..>", stroke: color(3)),
 
-          node(noteX, text(fill: color(3))[$tup(X) = (X_1, .., X_n)$], inset: 11pt, stroke: color(3)),
-          edge(noteX, X, "..>", stroke: color(3)),
+          node((1.6, -1.1), text(fill: color(3))[$tup(X) = (X_1, .., X_n)$], inset: 11pt, stroke: color(3)),
+          edge(<X>, "..>", stroke: color(3)),
 
-          node(note1, text(fill: color(4))[s.t. $c in X_j$], inset: 11pt, stroke: color(4)),
-          edge(note1, (1.8, -0.42), "..>", stroke: color(4)),
+          node((2.8, -1.1), text(fill: color(4))[s.t. $c in X_j$], inset: 11pt, stroke: color(4)),
+          edge((1.8, -0.42), "..>", stroke: color(4)),
         )
       }))
   ]
