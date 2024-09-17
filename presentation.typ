@@ -364,11 +364,42 @@
 
   - Simplification while iterating moves
 
-  $
-    tup(X)_1, tup(X)_2, ..., overbrace(tup(X)_k, "current"), tup(X)_(k+1), ... tup(X)_m \
-    arrow.b.double \
-    tup(X)_2, tup(X)_5, ..., tup(X)_(k-1), underbrace(tup(X)_(k+1), "current"), ..., tup(X)_(m-1)
-  $
+  #align(center, alternatives-fn(count: 3, i => {
+    let fill = if i >= 2 { black } else { gray.lighten(50%) }
+    let red_fill = if i >= 3 { red } else { black.lighten(100%) }
+    set text(fill: fill)
+    diagram(
+      node-stroke: 1pt,
+      spacing: 1.5em,
+      label-sep: 3pt,
+
+      node((0, 0), name: <or>, $or$, stroke: none),
+
+      node((-3, 1), $phi_1$, stroke: none),
+      edge(<or>, stroke: fill),
+      node((-3, 2), width: 1.7em, height: 1.7em, shape: fletcher.shapes.triangle, stroke: fill),
+
+      node((-0.9, 1), $phi_2$, stroke: none),
+      edge(<or>, stroke: fill),
+      node((-0.9, 2), width: 1.7em, height: 1.7em, shape: fletcher.shapes.triangle, stroke: fill),
+
+      node((0.9, 1), $phi_3$, stroke: none),
+      edge(<or>, stroke: fill),
+      node((0.9, 2), width: 1.7em, height: 1.7em, shape: fletcher.shapes.triangle, stroke: fill),
+
+      node((3, 1), $phi_4$, stroke: none),
+      edge(<or>, stroke: fill),
+      node((3, 2), width: 1.7em, height: 1.7em, shape: fletcher.shapes.triangle, stroke: fill),
+
+      node((-1.45, 1.5), name: <tl>, stroke: none),
+      node((-0.45, 1.5), name: <tr>, stroke: none),
+      node((-1.45, 2.5), name: <bl>, stroke: none),
+      node((-0.45, 2.5), name: <br>, stroke: none),
+
+      edge(<tl>, <br>, stroke: red_fill + 2pt),
+      edge(<tr>, <bl>, stroke: red_fill + 2pt),
+    )
+  }))
 ]
 
 #slide(title: [#h(1em)Improvements])[
