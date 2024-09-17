@@ -236,6 +236,16 @@
   
     - Local algorithm
   ][
+    #context place(top + right, dx: 1em, dy: -3em, diagram(
+      node-stroke: 1pt,
+      label-sep: 3pt,
+
+      node((0, 0), width: 10em, height: 8em, shape: fletcher.shapes.ellipse, stroke: text.fill),
+      node((-0.2, 0.2), radius: 2em, stroke: text.fill, fill: none),
+      node((-0.25, 0.3), $s$, stroke: none),
+      node((-0.31, 0.34), name: <p1>, radius: 2.5pt, fill: text.fill, stroke: none),
+      node((-0.25, 0.05), name: <p2>, radius: 0pt, fill: text.fill, stroke: none),
+    ))
 
     - Find optimal strategy on a *subgame*
 
