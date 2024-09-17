@@ -243,7 +243,7 @@
 
       node((0, 0), width: 10em, height: 8em, shape: fletcher.shapes.ellipse, stroke: fill(2)),
       node((-0.2, 0.2), radius: 2em, stroke: fill(2), fill: none),
-      node((-0.25, 0.3), $s$, stroke: none),
+      node((-0.25, 0.3), text(fill: fill(2), $s$), stroke: none),
       node((-0.31, 0.34), name: <p1>, radius: 2.5pt, fill: fill(2), stroke: none),
       node((-0.25, 0.05), name: <p2>, radius: 2.5pt, fill: fill(2), stroke: none),
       edge(<p1>, <p2>, "->", stroke: fill(2) + 1pt, bend: 30deg),
