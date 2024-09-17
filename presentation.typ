@@ -188,6 +188,12 @@
       
       - compact representation using logic formulas
 
+        #text(size: 19pt, h(-20pt) + box($
+          ({a, b}, {c}), ({a, b}, varempty), ({a}, {c}), ({b}, {c}), ({a}, varempty), ({b}, varempty), (varempty, {c}) \
+          arrow.b.double \
+          [a, 1] or [b, 1] or [c, 2]
+        $))
+
       - generate a small selection
 
       - allows for simplifications
