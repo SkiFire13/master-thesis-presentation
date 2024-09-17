@@ -389,18 +389,18 @@
 
   - Improves over the predecessor by an order of magnitude in some test cases
 
-  #align(center, table(
-    columns: (auto,) * 3,
+  #align(center, text(size: 19pt, table(
+    columns: (auto,) * 5,
     align: horizon,
     inset: (x: 1em),
     stroke: none,
-    table.header([$n$], [*Our solver*], [*LCSFE*]),
+    table.header([\# trans.], [*mCRL2*], [*AUT generation*], [*Our solver*], [*LCSFE*]),
     table.hline(),
-    [2], [132 #us], [65.5 #us],
-    [3], [212 #us], [195 #us],
-    [4], [2.30 ms], [4.38 ms],
-    [5], [202 ms],  [5.90 s],
-  ))
+    [4], [67.8 ms], [54.7 ms], [132 #us], [65.5 #us],
+    [66], [68.5 ms], [59.2 ms], [212 #us], [195 #us],
+    [2268], [72.0 ms], [117 ms],  [2.30 ms], [4.38 ms],
+    [183041], [1.47 s],  [2.05 s],  [202 ms],  [5.90 s],
+  )))
 ]
 
 #new-section[Future work]
