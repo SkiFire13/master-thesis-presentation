@@ -127,6 +127,7 @@
         let Y = (1.2, 0.4)
         let Z = (3.4, 0.4)
 
+        let noteB = (0, 0.8)
         let note0 = (0.3, -0.7)
         let noteX = (1.6, -1.1)
         let note1 = (2.8, -1.1)
@@ -155,7 +156,10 @@
           e(Y, cj, 4),
           e(Y, dk, 4),
           e(dk, Z, 5),
-          edge(Z, (3.4, 0.8), (0, 0.8), bi, "-|>", stroke: color(5)),
+          edge(Z, (3.4, 0.8), (0.5, 0.8), bi, "-|>", stroke: color(5)),
+
+          node(noteB, text(fill: color(2))[$b sub s_i$], inset: 11pt, stroke: color(2)),
+          edge(noteB, bi, "..>", stroke: color(2)),
 
           node(note0, text(fill: color(3))[s.t. $b sub f_i (join X)$], inset: 11pt, stroke: color(3)),
           edge(note0, (0.5, -0.2), "..>", stroke: color(3)),
