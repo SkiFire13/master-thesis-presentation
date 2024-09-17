@@ -232,33 +232,44 @@
 
 #new-section[Local strategy iteration]
 #slide[
-  #one-by-one(mode: "transparent")[
-  
-    - Local algorithm
-  ][
-    #context place(top + right, dx: 1em, dy: -3em, diagram(
+  - Local algorithm
+
+  #alternatives-fn(count: 4, i => [
+    #let fill = k => if i >= k { black } else { gray.lighten(50%) }
+
+    #context place(top + right, dx: 1em, dy: -5em, diagram(
       node-stroke: 1pt,
       label-sep: 3pt,
 
-      node((0, 0), width: 10em, height: 8em, shape: fletcher.shapes.ellipse, stroke: text.fill),
-      node((-0.2, 0.2), radius: 2em, stroke: text.fill, fill: none),
+      node((0, 0), width: 10em, height: 8em, shape: fletcher.shapes.ellipse, stroke: fill(2)),
+      node((-0.2, 0.2), radius: 2em, stroke: fill(2), fill: none),
       node((-0.25, 0.3), $s$, stroke: none),
-      node((-0.31, 0.34), name: <p1>, radius: 2.5pt, fill: text.fill, stroke: none),
-      node((-0.25, 0.05), name: <p2>, radius: 0pt, fill: text.fill, stroke: none),
+      node((-0.31, 0.34), name: <p1>, radius: 2.5pt, fill: fill(2), stroke: none),
+      node((-0.25, 0.05), name: <p2>, radius: 2.5pt, fill: fill(2), stroke: none),
+      edge(<p1>, <p2>, "->", stroke: fill(2) + 1pt, bend: 30deg),
+
+      node((-0.2, -0.15), name: <p3>, radius: 2.5pt, fill: if i >= 3 { black }, stroke: none),
+      edge(<p2>, <p3>, "..>", stroke: if i >= 3 { (dash: "dashed") }, bend: 30deg),
+      
+      node((-0.17, 0.125), radius: 2.7em, stroke: if i >= 4 { (dash: "dashed") }, fill: none),
     ))
+
+    #set text(fill: fill(2))
 
     - Find optimal strategy on a *subgame*
 
       - game on a subset of vertices
-  ][
 
-    - Check if one player can force winning plays in the subgame
-  ][
+    #set text(fill: fill(3))
 
-    - Otherwise *expand* the game
+      - Check if one player can force winning plays in the subgame
 
-      - according to an expansion strategy
-  ]
+    #set text(fill: fill(4))
+
+      - Otherwise *expand* the subgame
+
+        - according to an expansion strategy
+  ])
 ]
 
 #new-section[Adapting the algorithm]
