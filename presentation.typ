@@ -224,6 +224,7 @@
       
       - $e$, the number of vertices visited before $w$
   ][
+    #v(1.3em)
 
     - Issue: global algorithm
   ]
