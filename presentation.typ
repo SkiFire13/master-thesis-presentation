@@ -186,17 +186,26 @@
 
     - *Symbolic moves*:
       
-      - compact representation using logic formulas
+      #one-by-one(mode: "transparent", start: 4)[
 
-        #text(size: 19pt, h(-20pt) + box($
-          ({a, b}, {c}), ({a, b}, varempty), ({a}, {c}), ({b}, {c}), ({a}, varempty), ({b}, varempty), (varempty, {c}) \
-          arrow.b.double \
-          [a, 1] or [b, 1] or [c, 2]
-        $))
+        - compact representation using logic formulas
 
-      - generate a small selection
+          #text(size: 19pt, h(-20pt) + box($
+            ({a, b}, {c}), ({a, b}, varempty), ({a}, {c}), ({b}, {c}), ({a}, varempty), ({b}, varempty), (varempty, {c}) \
+            arrow.b.double \
+            [a, 1] or [b, 1] or [c, 2]
+          $))
+      ][
 
-      - allows for simplifications
+        - generate a small selection
+
+          #text(size: 19pt, box(width: 100%, inset: (right: 40pt), $
+            ({a}, varempty), ({b}, varempty), (varempty, {c})
+          $))
+      ][
+
+        - allows for simplifications
+      ]
   ]
 ]
 
