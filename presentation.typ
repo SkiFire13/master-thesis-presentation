@@ -463,7 +463,7 @@
 
     - Translation for $mu$-calculus, bisimilarity and parity games
 
-  - Improves over the predecessor by an order of magnitude in some test cases
+  - Improves over the predecessor by an order of magnitude in some test cases and is comparable to the state of the art
 
   #align(center, text(size: 19pt, table(
     columns: (auto,) * 5,
