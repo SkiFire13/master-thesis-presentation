@@ -402,7 +402,7 @@
 #slide(title: [#h(1em)Improvements])[
   - Computing *play profiles* when expanding vertices
 
-  - *Expansion scheme* with upper bound on number of iterations
+  - *Expansion scheme* with upper bound on number of expansions
 
   - *Graph simplification* to remove vertices with determined winner
 ]
