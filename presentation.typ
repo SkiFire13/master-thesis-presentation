@@ -212,7 +212,7 @@
 #slide[
   #one-by-one(mode: "transparent")[
   
-    - Idea: improve strategy for player 0 until optimal
+    - Idea: *improve* strategy for player 0 until optimal
   ][
   
     - Criteria: *play profiles*, ordered $(w, P, e)$
@@ -231,7 +231,8 @@
 
 #new-section[Local strategy iteration]
 #slide[
-  - Local algorithm
+  #v(2em)
+  - *Local* algorithm
 
   #alternatives-fn(count: 4, i => [
     #let fill = k => if i >= k { black } else { gray.lighten(50%) }
@@ -273,7 +274,7 @@
 
 #new-section[Adapting the algorithm]
 #slide[
-  - Goal: solve the powerset game using local strategy iteration
+  - *Goal*: solve the powerset game using *local strategy iteration*
 
   - Challenges caused by the different assumptions
 
@@ -321,7 +322,7 @@
 ]
 
 #slide(title: [#h(1em)Challenges])[
-  - Generalizing subgames to subsets of edges
+  - Generalizing subgames to subsets of *edges*
   
   #v(1em)
 
@@ -359,9 +360,9 @@
 ]
 
 #slide(title: [#h(1em)Challenges])[
-  - Making the symbolic moves generator lazy
+  - Making the symbolic moves generator *lazy*
 
-  - Simplification while iterating moves
+  - *Simplification* while iterating moves
 
   #align(center, alternatives-fn(count: 3, i => {
     let fill = if i >= 2 { black } else { gray.lighten(50%) }
