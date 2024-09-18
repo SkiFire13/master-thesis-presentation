@@ -115,6 +115,7 @@
 
 #new-section[Powerset game]
 #slide[
+  #place(bottom + right, text(font: "New Computer Modern", size: 19pt)[ \[Baldan, König, Mika-Michalski, Padoan\] ])
   #one-by-one(mode: "transparent")[
     - Given basis $B_L$, determine whether $b sub s_i$ for $b in B_L$
   ][
