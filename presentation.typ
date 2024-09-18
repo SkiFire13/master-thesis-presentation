@@ -54,6 +54,8 @@
 
 #new-section[$mu$-calculus]
 #slide[
+  #place(bottom + right, dx: 1em, dy: 2em, text(font: "New Computer Modern", size: 19pt)[ \[De Bakker, Kozen\] ])
+
   - Labelled transition system $(bb(S), ->)$
 
   #align(center, diagram(
@@ -81,8 +83,6 @@
   $
     phi, psi := p | x | phi or psi | phi and psi | underbrace(boxx(A) phi | diam(A) phi, "modal operators") | underbrace(eta x. phi, "fixpoint")
   $
-
-  #align(right, text(font: "New Computer Modern", size: 19pt)[ \[De Bakker, Kozen\] ])
 ]
 
 #slide[
@@ -115,7 +115,7 @@
 
 #new-section[Powerset game]
 #slide[
-  #place(bottom + right, text(font: "New Computer Modern", size: 19pt)[ \[Baldan, König, Mika-Michalski, Padoan\] ])
+  #place(bottom + right, dx: 1em, text(font: "New Computer Modern", size: 19pt)[ \[Baldan, König, Mika-Michalski, Padoan\] ])
   #one-by-one(mode: "transparent")[
     - Given basis $B_L$, determine whether $b sub s_i$ for $b in B_L$
   ][
@@ -250,6 +250,7 @@
 
 #new-section[Strategy iteration]
 #slide[
+  #place(bottom + right, dx: 1em, dy: 2em, text(font: "New Computer Modern", size: 19pt)[ \[Vöge, Jurdziński\] ])
   #one-by-one(mode: "transparent")[
   
     - Idea: *improve* strategy for player 0 until optimal
@@ -274,6 +275,7 @@
 
 #new-section[Local strategy iteration]
 #slide[
+  #place(bottom + right, dx: 1em, dy: 2.7em, text(font: "New Computer Modern", size: 19pt)[ \[Friedmann, Lange\] ])
   #v(2em)
   - *Local* algorithm
 
