@@ -208,6 +208,26 @@
   ]
 ]
 
+#new-section[Parity game algorithms]
+#slide[
+  #one-by-one(mode: "transparent")[
+    
+    - Two approaches:
+
+      #one-by-one(mode: "transparent")[][
+
+        - *Global* algorithms: solve for every position
+      ][
+
+        - *Local* algorithms: solve for some positions
+      ]
+  ][][][
+    #v(1.3em)
+
+    - Predecessor: LCSFE, based on a local algorithm by Stevens and Stirling
+  ]
+]
+
 #new-section[Strategy iteration]
 #slide[
   #one-by-one(mode: "transparent")[
