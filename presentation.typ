@@ -146,7 +146,7 @@
           e(<X>, <di>, 4),
           e(<Y>, <di>, 4),
           e(<di>, <Z>, 6),
-          edge(<Z>, (3.4, 0.8), (0.5, 0.8), <bi>, "-|>", stroke: color(6)),
+          edge(<Z>, (3.4, 0.8), (0.5, 0.8), <bi>, "-|>", stroke: color(6), corner-radius: 15pt),
 
           node((0, 0.8), text(fill: color(2))[$b sub s_i$], inset: 11pt, stroke: color(2), shape: fletcher.shapes.pill),
           edge(<bi>, "..>", stroke: color(2)),
@@ -163,14 +163,14 @@
           node((3.2, -0.4), text(fill: color(5), size: 19pt)[No successor: \ opponent wins], inset: 11pt, shape: fletcher.shapes.pill, stroke: color(5)),
           edge(<cj>, "..>", stroke: color(5)),
 
-          node(name: <b0>, (0.4, 0.05), stroke: none),
+          node(name: <b0>, (1, 0.05), stroke: none),
           node(name: <b1>, (3.72, 0.05), stroke: none),
           node(name: <b2>, (3.72, 0.9), stroke: none),
           node(name: <b3>, (0.5, 0.9), stroke: none),
           node(name: <b4>, (-0.3, 0.2), stroke: none),
           node(name: <b5>, (-0.3, -0.325), stroke: none),
           node(name: <b6>, (0.13, -0.325), stroke: none),
-          node(name: <b7>, (0.3, 0.05), stroke: none),
+          node(name: <b7>, (0.55, 0.05), stroke: none),
 
           edge(<b0>, <b1>, <b2>, <b3>, <b4>, <b5>, <b6>, <b7>, <b0>, "--", corner-radius: 20pt, stroke: if i < 7 { gray.lighten(100%) } else { blue }),
 
