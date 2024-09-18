@@ -113,18 +113,15 @@
   ]
 ]
 
-#new-section[Game characterization]
+#new-section[Powerset game]
 #slide[
   #one-by-one(mode: "transparent")[
     - Given basis $B_L$, determine whether $b sub s_i$ for $b in B_L$
   ][
-
-    - *Powerset Game*
-
-      #align(center, alternatives-fn(count: 6, i => {
+      #align(center, alternatives-fn(count: 8, i => {
         let color = k => if i < k { gray.lighten(50%) } else { black }
 
-        let p_color = if i < 6 { black.lighten(100%) } else { blue }
+        let b_color = k => if i < k { gray.lighten(50%) } else { blue }
 
         let n0 = (n, p, c, k) => node(name: n, p, text(fill: color(k), c), radius: 1.5em, stroke: color(k))
         let n1 = (n, p, c, k) => node(name: n, p, text(fill: color(k), c), inset: 1em, stroke: color(k), shape: fletcher.shapes.rect)
@@ -140,15 +137,15 @@
           n1(<Y>, (1.2, 0.4), $tup(Y)$, 3),
           n0(<cj>, (2.4, -0.4), $[c, j]$, 4),
           n0(<di>, (2.4, 0.4), $[d, i]$, 4),
-          n1(<Z>, (3.4, 0.4), $tup(Z)$, 5),
+          n1(<Z>, (3.4, 0.4), $tup(Z)$, 6),
 
           e(<bi>, <X>, 3),
           e(<bi>, <Y>, 3),
           e(<X>, <cj>, 4),
-          e(<Y>, <cj>, 4),
+          e(<X>, <di>, 4),
           e(<Y>, <di>, 4),
-          e(<di>, <Z>, 5),
-          edge(<Z>, (3.4, 0.8), (0.5, 0.8), <bi>, "-|>", stroke: color(5)),
+          e(<di>, <Z>, 6),
+          edge(<Z>, (3.4, 0.8), (0.5, 0.8), <bi>, "-|>", stroke: color(6)),
 
           node((0, 0.8), text(fill: color(2))[$b sub s_i$], inset: 11pt, stroke: color(2), shape: fletcher.shapes.pill),
           edge(<bi>, "..>", stroke: color(2)),
@@ -162,12 +159,34 @@
           node((2.8, -1.1), text(fill: color(4))[s.t. $c in X_j$], inset: 11pt, stroke: color(4), shape: fletcher.shapes.pill),
           edge((1.8, -0.42), "..>", stroke: color(4)),
 
-          node((rel: (0, 0.18), to: <bi>), text(fill: p_color, size: 19pt, $2$), stroke: none),
-          node((rel: (0, 0.18), to: <cj>), text(fill: p_color, size: 19pt, $5$), stroke: none),
-          node((rel: (0, 0.18), to: <di>), text(fill: p_color, size: 19pt, $2$), stroke: none),
-          node((rel: (0, 0.18), to: <X>), text(fill: p_color, size: 19pt, $0$), stroke: none),
-          node((rel: (0, 0.18), to: <Y>), text(fill: p_color, size: 19pt, $0$), stroke: none),
-          node((rel: (0, 0.18), to: <Z>), text(fill: p_color, size: 19pt, $0$), stroke: none),
+          node((3.2, -0.4), text(fill: color(5), size: 19pt)[No successor: \ opponent wins], inset: 11pt, shape: fletcher.shapes.pill, stroke: color(5)),
+          edge(<cj>, "..>", stroke: color(5)),
+
+          node(name: <b0>, (0.4, 0.05), stroke: none),
+          node(name: <b1>, (3.72, 0.05), stroke: none),
+          node(name: <b2>, (3.72, 0.9), stroke: none),
+          node(name: <b3>, (0.5, 0.9), stroke: none),
+          node(name: <b4>, (-0.3, 0.2), stroke: none),
+          node(name: <b5>, (-0.3, -0.325), stroke: none),
+          node(name: <b6>, (0.13, -0.325), stroke: none),
+          node(name: <b7>, (0.3, 0.05), stroke: none),
+
+          edge(<b0>, <b1>, <b2>, <b3>, <b4>, <b5>, <b6>, <b7>, <b0>, "--", corner-radius: 20pt, stroke: if i < 7 { gray.lighten(100%) } else { blue }),
+
+          ..(if i < 8 { () } else {
+            let priority = (pos, pr) => node(pos, text(fill: blue, size: 19pt, pr), stroke: none)
+            (
+              priority((rel: (0, 0.18), to: <bi>), $2$),
+              priority((rel: (0, 0.18), to: <cj>), $5$),
+              priority((rel: (0, 0.18), to: <di>), $2$),
+              priority((rel: (0, 0.18), to: <X>), $0$),
+              priority((rel: (0, 0.18), to: <Y>), $0$),
+              priority((rel: (0, 0.18), to: <Z>), $0$),
+            )
+          }),
+
+          node((22em, -2.5em), text(fill: color(8), size: 19pt)[Highest recurring priority wins: \ even $->$ player 0, odd $->$ player 1], inset: 11pt, shape: fletcher.shapes.pill, stroke: color(8)),
+          edge((0.7, 0.91), "..>", stroke: color(8)),
         )
       }))
   ]
