@@ -81,6 +81,8 @@
   $
     phi, psi := p | x | phi or psi | phi and psi | underbrace(boxx(A) phi | diam(A) phi, "modal operators") | underbrace(eta x. phi, "fixpoint")
   $
+
+  #align(right, text(font: "New Computer Modern", size: 19pt)[ \[De Bakker, Kozen\] ])
 ]
 
 #slide[
