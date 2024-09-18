@@ -215,13 +215,16 @@
     - Idea: *improve* strategy for player 0 until optimal
   ][
   
-    - Criteria: *play profiles*, ordered $(w, P, e)$
+    - Criteria: *play profiles* $(w, P, e)$
 
       - $w$, the most relevant vertex of the cycle
       
       - $P$, the visited vertices more relevant than $w$
       
       - $e$, the number of vertices visited before $w$
+  ][
+
+    - Play profiles are *ordered*
   ][
     #v(1.3em)
 
