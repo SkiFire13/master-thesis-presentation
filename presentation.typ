@@ -1,13 +1,11 @@
-#import "@preview/cetz:0.2.2": canvas, draw, vector
-#import "@preview/fletcher:0.5.1" as fletcher: diagram, node, edge
+#import "@preview/fletcher:0.5.1" as fletcher: node, edge
 #import "@preview/pinit:0.2.0": *
 #import "@preview/touying:0.3.1": *
 #import "typst-touying-unipd/unipd.typ": *
 #import "common.typ": *
+#import "touying-diagrams.typ": diagram
 
 #show: unipd-theme
-
-#let diagram = touying-reducer.with(reduce: fletcher.diagram, cover: fletcher.hide)
 
 #title-slide(
   title: [Solving Systems of Fixpoint Equations via Strategy Iteration],
@@ -56,8 +54,6 @@
 
 #new-section[$mu$-calculus]
 #slide[
-  #place(bottom + right, dx: 1em, dy: 2em, text(font: "New Computer Modern", size: 19pt)[ \[De Bakker, Kozen\] ])
-
   - Labelled transition system $(bb(S), ->)$
 
   #align(center, diagram(
@@ -85,6 +81,10 @@
   $
     phi, psi := p | x | phi or psi | phi and psi | underbrace(boxx(A) phi | diam(A) phi, "modal operators") | underbrace(eta x. phi, "fixpoint")
   $
+
+  #meanwhile
+
+  #place(bottom + right, dx: 1em, dy: 1em, text(font: "New Computer Modern", size: 19pt)[ \[De Bakker, Kozen\] ])
 ]
 
 #slide[
@@ -122,8 +122,7 @@
 
 #new-section[Powerset game]
 #slide[
-  #place(bottom + right, dx: 1em, text(font: "New Computer Modern", size: 19pt)[ \[Baldan, König, Mika-Michalski, Padoan\] ])
-
+  #v(2em)
   - Given basis $B_L$, determine whether $b sub s_i$ for $b in B_L$
 
   #pause
@@ -201,6 +200,10 @@
     node((22em, -2.5em), text(size: 19pt)[Highest recurring priority wins: \ even $->$ player 0, odd $->$ player 1], inset: 11pt, shape: fletcher.shapes.pill),
     edge((0.7, 0.91), "..>"),
   ))
+
+  #meanwhile
+
+  #place(bottom + right, dx: 1em, text(font: "New Computer Modern", size: 19pt)[ \[Baldan, König, Mika-Michalski, Padoan\] ])
 ]
 
 #new-section[Selections and symbolic moves]
@@ -260,8 +263,6 @@
 
 #new-section[Strategy iteration]
 #slide[
-  #place(bottom + right, dx: 1em, dy: 2em, text(font: "New Computer Modern", size: 19pt)[ \[Vöge, Jurdziński\] ])
-
   - Idea: *improve* strategy for player 0 until optimal
 
   #pause
@@ -282,12 +283,14 @@
   #v(1.3em)
 
   - Issue: global algorithm
+
+  #meanwhile
+
+  #place(bottom + right, dx: 1em, dy: 2em, text(font: "New Computer Modern", size: 19pt)[ \[Vöge, Jurdziński\] ])
 ]
 
 #new-section[Local strategy iteration]
 #slide[
-  #place(bottom + right, dx: 1em, dy: 2.7em, text(font: "New Computer Modern", size: 19pt)[ \[Friedmann, Lange\] ])
-
   #v(2em)
   - *Local* algorithm
 
@@ -331,6 +334,10 @@
 
     node((-0.17, 0.125), radius: 2.7em, stroke: (dash: "dashed"), fill: none),
   ))
+
+  #meanwhile
+
+  #place(bottom + right, dx: 1em, dy: 2.7em, text(font: "New Computer Modern", size: 19pt)[ \[Friedmann, Lange\] ])
 ]
 
 #new-section[Adapting the algorithm]
