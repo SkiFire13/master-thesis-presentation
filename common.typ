@@ -11,7 +11,7 @@
 #let Even = math.op("Even")
 
 #let tup(a) = math.bold(a)
-#let varempty = text(font: "", sym.emptyset)
+#let varempty = text(font: (), sym.emptyset)
 #let sub = math.class("relation", sym.subset.eq.sq)
 #let join = math.class("vary", sym.union.sq)
 
