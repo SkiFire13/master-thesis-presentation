@@ -340,7 +340,7 @@
 ]
 
 #slide(title: [#h(1em)Challenges])[
-  - Prevent finite plays
+  - Prevent finite plays (easy)
 
   #v(1em)
 
@@ -353,7 +353,7 @@
     node((1, 0), name: <b>, "", radius: 0.7em),
     node((1, 0.9), name: <c>, "", radius: 0.7em, shape: fletcher.shapes.rect),
     node((0, 0.9), name: <d>, "", radius: 0.7em),
-    node( (2, 0.45), name: <e>, "", radius: 0.7em, shape: fletcher.shapes.rect),
+    node((2, 0.45), name: <e>, "", radius: 0.7em, shape: fletcher.shapes.rect),
 
     edge(<a>, <b>, "-|>"),
     edge(<b>, <c>, "-|>"),
