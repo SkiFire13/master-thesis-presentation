@@ -448,12 +448,52 @@
   ))
 ]
 
-#slide(title: [#h(1em)Improvements])[
-  - Computing *play profiles* when expanding vertices
+#new-section[Improvements]
 
-  - *Expansion scheme* with upper bound on number of expansions
+#slide[
+  Compute *play profiles* when expanding vertices
 
-  - *Graph simplification* to remove vertices with determined winner
+  #pause
+
+  - recomputing them for all vertices is relatively slow
+
+  #pause
+
+  - idea:
+
+    - the strategy is fixed for all newly expanded vertices
+
+    // TODO: Reword better
+    - the path starting from newly expanded vertices is unique
+
+    - thus compute the play profile for that play
+]
+
+#slide[
+  // TODO: Reword better
+  *Expansion scheme* with upper bound on number of expansions
+
+  #pause
+
+  - we want to avoid expanding too many vertices too soon
+
+  #pause
+
+  - we want to avoid performing too many expansions
+
+  #pause
+
+  - heuristic for how many new vertices in each expansion
+
+    - increase the number of new vertices exponentially
+
+    - logarithmic bound on the number of expansions
+]
+
+#slide[
+  *Graph simplification* to remove vertices with determined winner
+
+  // TODO: Drawing
 ]
 
 #new-section[Implementation]
