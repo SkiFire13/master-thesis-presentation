@@ -482,15 +482,19 @@
 
 #new-section[Future work]
 #slide[
-  - Other parity game algorithms
+  - Other parity game algorithms (e.g. Parys's quasi-polynomial algorithm)
 
-  - Translating other problems
+  - Translating other problems (e.g. quantitative $mu$-calculus)
 
   - Better expansion strategy
 
   - Alternative data structures for symbolic moves (BDDs)
 
   - Integrating abstractions techniques
+
+    - up-to techniques
+
+    - approximating infinite domains
 ]
 
 #filled-slide[
