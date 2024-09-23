@@ -131,13 +131,13 @@
   #let n1 = (n, p, c, k) => node(name: n, p, c, inset: 1em, shape: fletcher.shapes.rect)
   #let e = (f, t, k) => edge(f, t, "-|>")
   #let priority = (pos, pr) => node(pos, text(fill: blue, size: 19pt, pr), stroke: none)
+  #let note = (pos, c, to) => (node(pos, text(fill: blue, c), inset: 11pt, stroke: blue, shape: fletcher.shapes.pill), edge(to, "..>", stroke: blue))
   #align(center, diagram(
     node-stroke: 1pt,
     label-sep: 3pt,
 
     n0(<bi>, (0, 0), $[b, i]$, 2),
-    node((0, 0.8), $b sub s_i$, inset: 11pt, shape: fletcher.shapes.pill),
-    edge(<bi>, "..>"),
+    ..note((0, 0.8), $b sub s_i$, <bi>),
 
     pause,
 
@@ -145,10 +145,8 @@
     n1(<Y>, (1.2, 0.4), $tup(Y)$, 3),
     e(<bi>, <X>, 3),
     e(<bi>, <Y>, 3),
-    node((0.3, -0.7), [s.t. $b sub f_i (join X)$], inset: 11pt, shape: fletcher.shapes.pill),
-    edge((0.5, -0.2), "..>"),
-    node((1.6, -1.1), $tup(X) = (X_1, .., X_n)$, inset: 11pt, shape: fletcher.shapes.pill),
-    edge(<X>, "..>"),
+    ..note((0.3, -0.7), [s.t. $b sub f_i (join X)$], (0.5, -0.2)),
+    ..note((1.6, -1.1), $tup(X) = (X_1, .., X_n)$, <X>),
 
     pause,
 
@@ -157,13 +155,11 @@
     e(<X>, <cj>, 4),
     e(<X>, <di>, 4),
     e(<Y>, <di>, 4),
-    node((2.8, -1.1), [s.t. $c in X_j$], inset: 11pt, shape: fletcher.shapes.pill),
-    edge((1.8, -0.42), "..>"),
+    ..note((2.8, -1.1), [s.t. $c in X_j$], (1.8, -0.42)),
 
     pause,
 
-    node((3.2, -0.4), text(size: 19pt)[No successor: \ opponent wins], inset: 11pt, shape: fletcher.shapes.pill),
-    edge(<cj>, "..>"),
+    ..note((3.2, -0.4), text(size: 19pt)[No successor: \ opponent wins], <cj>),
 
     pause,
 
@@ -192,8 +188,7 @@
     priority((rel: (0, 0.18), to: <X>), $0$),
     priority((rel: (0, 0.18), to: <Y>), $0$),
     priority((rel: (0, 0.18), to: <Z>), $0$),
-    node((22em, -2.5em), text(size: 19pt)[Highest recurring priority wins: \ even $->$ player 0, odd $->$ player 1], inset: 11pt, shape: fletcher.shapes.pill),
-    edge((0.7, 0.91), "..>"),
+    ..note((22em, -2.5em), text(size: 19pt)[Highest recurring priority wins: \ even $->$ player 0, odd $->$ player 1], (0.7, 0.91)),
   ))
 
   #meanwhile
