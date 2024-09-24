@@ -448,9 +448,7 @@
   ))
 ]
 
-#new-section[Improvements]
-
-#slide[
+#slide(title: [#h(1em)Improvements])[
   Compute *play profiles* when expanding vertices
 
   #pause
@@ -469,7 +467,7 @@
     - thus compute the play profile for that play
 ]
 
-#slide[
+#slide(title: [#h(1em)Improvements])[
   // TODO: Reword better
   *Expansion scheme* with upper bound on number of expansions
 
@@ -490,7 +488,7 @@
     - logarithmic bound on the number of expansions
 ]
 
-#slide[
+#slide(title: [#h(1em)Improvements])[
   *Graph simplification* to remove vertices with determined winner
 
   // TODO: Drawing
