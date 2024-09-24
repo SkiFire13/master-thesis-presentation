@@ -130,7 +130,7 @@
   #let n0 = (n, p, c, k) => node(name: n, p, c, radius: 1.5em)
   #let n1 = (n, p, c, k) => node(name: n, p, c, inset: 1em, shape: fletcher.shapes.rect)
   #let e = (f, t, k) => edge(f, t, "-|>")
-  #let priority = (pos, pr) => node(pos, text(fill: blue, size: 19pt, pr), stroke: none)
+  #let priority = (pos, pr) => node((rel: (0, 0.18), to: pos), text(fill: blue, size: 19pt, pr), stroke: none)
   #let note = (pos, c, to) => (node(pos, text(fill: blue, c), inset: 11pt, stroke: blue, shape: fletcher.shapes.pill), edge(to, "..>", stroke: blue))
   #align(center, diagram(
     node-stroke: 1pt,
@@ -182,12 +182,12 @@
 
     pause,
 
-    priority((rel: (0, 0.18), to: <bi>), $2$),
-    priority((rel: (0, 0.18), to: <cj>), $5$),
-    priority((rel: (0, 0.18), to: <di>), $2$),
-    priority((rel: (0, 0.18), to: <X>), $0$),
-    priority((rel: (0, 0.18), to: <Y>), $0$),
-    priority((rel: (0, 0.18), to: <Z>), $0$),
+    priority(<bi>, $2$),
+    priority(<cj>, $5$),
+    priority(<di>, $2$),
+    priority(<X>, $0$),
+    priority(<Y>, $0$),
+    priority(<Z>, $0$),
     ..note((22em, -2.5em), text(size: 19pt)[Highest recurring priority wins: \ even $->$ player 0, odd $->$ player 1], (0.7, 0.91)),
   ))
 
