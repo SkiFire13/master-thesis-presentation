@@ -127,34 +127,34 @@
 
   #pause
 
-  #let n0 = (n, p, c, k) => node(name: n, p, c, radius: 1.5em)
-  #let n1 = (n, p, c, k) => node(name: n, p, c, inset: 1em, shape: fletcher.shapes.rect)
-  #let e = (f, t, k) => edge(f, t, "-|>")
+  #let n0 = (n, p, c) => node(name: n, p, c, radius: 1.5em)
+  #let n1 = (n, p, c) => node(name: n, p, c, inset: 1em, shape: fletcher.shapes.rect)
+  #let e = (f, t) => edge(f, t, "-|>")
   #let priority = (pos, pr) => node((rel: (0, 0.18), to: pos), text(fill: blue, size: 19pt, pr), stroke: none)
   #let note = (pos, c, to) => (node(pos, text(fill: blue, c), inset: 11pt, stroke: blue, shape: fletcher.shapes.pill), edge(to, "..>", stroke: blue))
   #align(center, diagram(
     node-stroke: 1pt,
     label-sep: 3pt,
 
-    n0(<bi>, (0, 0), $[b, i]$, 2),
+    n0(<bi>, (0, 0), $[b, i]$),
     ..note((0, 0.8), $b sub s_i$, <bi>),
 
     pause,
 
-    n1(<X>, (1.2, -0.4), $tup(X)$, 3),
-    n1(<Y>, (1.2, 0.4), $tup(Y)$, 3),
-    e(<bi>, <X>, 3),
-    e(<bi>, <Y>, 3),
+    n1(<X>, (1.2, -0.4), $tup(X)$),
+    n1(<Y>, (1.2, 0.4), $tup(Y)$),
+    e(<bi>, <X>),
+    e(<bi>, <Y>),
     ..note((0.3, -0.7), [s.t. $b sub f_i (join X)$], (0.5, -0.2)),
     ..note((1.6, -1.1), $tup(X) = (X_1, .., X_n)$, <X>),
 
     pause,
 
-    n0(<cj>, (2.4, -0.4), $[c, j]$, 4),
-    n0(<di>, (2.4, 0.4), $[d, i]$, 4),
-    e(<X>, <cj>, 4),
-    e(<X>, <di>, 4),
-    e(<Y>, <di>, 4),
+    n0(<cj>, (2.4, -0.4), $[c, j]$),
+    n0(<di>, (2.4, 0.4), $[d, i]$),
+    e(<X>, <cj>),
+    e(<X>, <di>),
+    e(<Y>, <di>),
     ..note((2.8, -1.1), [s.t. $c in X_j$], (1.8, -0.42)),
 
     pause,
@@ -163,8 +163,8 @@
 
     pause,
 
-    n1(<Z>, (3.4, 0.4), $tup(Z)$, 6),
-    e(<di>, <Z>, 6),
+    n1(<Z>, (3.4, 0.4), $tup(Z)$),
+    e(<di>, <Z>),
     edge(<Z>, (3.4, 0.8), (0.5, 0.8), <bi>, "-|>", corner-radius: 15pt),
 
     pause,
@@ -196,13 +196,103 @@
   #place(bottom + right, dx: 1em, text(font: "New Computer Modern", size: 19pt)[ \[Baldan, König, Mika-Michalski, Padoan\] ])
 ]
 
+#slide[
+  $
+    X feq_mu {0} union X union {x + 2 | x in X}
+  $
+
+  #pause
+
+  #let n0 = (n, p, c, ..args) => node(name: n, p, move(dy: -0.4em, c), radius: 1.3em, ..args)
+  #let n1 = (n, p, c, ..args) => node(name: n, p, move(dy: -0.4em, c), width: 3em, height: 2.6em, shape: fletcher.shapes.rect, ..args)
+  #let e = (f, t, ..args) => edge(f, t, "-|>", ..args)
+  #let priority = (pos, pr) => node((rel: (0em, -1.5em), to: pos), text(fill: blue, size: 19pt, [#pr]), stroke: none)
+  #align(center, diagram(
+    node-stroke: 1pt,
+    label-sep: 3pt,
+
+    n0(<3>, (1, 0), $3$),
+    priority(<3>, 1),
+
+    pause,
+
+    n1(<s1>, (2, 0), ${1}$),
+    priority(<s1>, 0),
+    e(<3>, <s1>, bend: 15deg),
+
+    n1(<s3>, (2, 0.75), ${3}$),
+    priority(<s3>, 0),
+    e(<3>, <s3>, bend: 15deg),
+    e(<s3>, <3>, bend: 15deg),
+
+    node(name: <d3>, (1, 0.75), $...$, stroke: none),
+    e(<3>, <d3>),
+
+    pause,
+
+    n0(<1>, (3, 0), $1$),
+    priority(<1>, 1),
+    e(<s1>, <1>, bend: 15deg),
+    e(<1>, <s1>, bend: 15deg),
+
+    pause,
+
+    node(name: <d1>, (3, 0.75), $...$, stroke: none),
+    e(<1>, <d1>),
+
+    pause,
+
+    n1(<s12>, (4, 0), ${1, 2}$),
+    priority(<s12>, 0),
+    e(<1>, <s12>, bend: 15deg),
+    e(<s12>, <1>, bend: 15deg),
+    
+    pause,
+
+    n0(<2>, (4, 1.5), $2$),
+    priority(<2>, 1),
+    e(<s12>, <2>, bend: 15deg),
+    e(<2>, <s12>, bend: 15deg),
+
+    pause,
+
+    n1(<s0>, (3, 1.5), ${0}$),
+    priority(<s0>, 0),
+    e(<2>, <s0>, bend: -15deg),
+
+    n1(<s2>, (3, 2.25), ${2}$),
+    priority(<s2>, 0),
+    e(<2>, <s2>, bend: 15deg),
+    e(<s2>, <2>, bend: 15deg),
+
+    node(name: <d2>, (4, 2.25), $...$, stroke: none),
+    e(<2>, <d2>),
+
+    pause,
+
+    n0(<0>, (2, 1.5), $0$),
+    priority(<0>, 1),
+    e(<s0>, <0>, bend: -15deg),
+    e(<0>, <s0>, bend: -15deg),
+
+    node(name: <d0>, (2, 2.25), $...$, stroke: none),
+    e(<0>, <d0>),
+
+    pause,
+
+    n1(<e>, (1, 1.5), $varempty$),
+    priority(<e>, 0),
+    e(<0>, <e>),
+  ))
+]
+
 #new-section[Selections and symbolic moves]
 #slide[
   - Problem: player 0 has lot of moves
 
   #pause
 
-  - *Selections*: subset of moves equivalent to the full setting
+  - *Selections*: subset of moves equivalent to the full set
 
   #pause
 
