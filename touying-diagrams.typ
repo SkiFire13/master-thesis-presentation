@@ -22,7 +22,10 @@
 	seq.children.map(child => {
 		if child.func() == metadata {
 			let value = child.value
-			value.post = _cetz-cover
+			if value.layer == auto {
+				value.layer = 0
+			}
+			value.layer = value.layer - 100
 			metadata(value)
 		} else {
 			child

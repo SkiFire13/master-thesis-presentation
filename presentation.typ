@@ -346,7 +346,7 @@
 #slide[
   - *Strategy*: function from vertex to the move to perform
 
-    - note: it assumes all vertices have at least one succ.
+    - assumes all vertices have at least one successor
 
   #pause
 
@@ -365,7 +365,11 @@
 
     #pause
 
-    - Improve $phi$ based on the induced plays
+    - Improve $phi$ by looking at the induced plays
+
+    #pause
+
+    - Repeat
 
   #meanwhile
 
@@ -383,7 +387,7 @@
 
   #pause
 
-  - Ordered based on how much they favor to player 0
+  - Order based on how much they are favorable to player 0
 
   #pause
 
@@ -510,8 +514,8 @@
     edge(<a>, <b>, "-|>", bend: 20deg),
     edge(<b>, <a>, "-|>", bend: 20deg),
     edge(<a>, <c>, "-|>", bend: -20deg),
-    edge(<c>, <a>, "-->", bend: -20deg, stroke: blue + 2.5pt),
-    edge(<d>, <b>, "-->", bend: -20deg, stroke: blue + 2.5pt),
+    edge(<c>, <a>, "-->", bend: -20deg, stroke: blue + 2.5pt, mark-scale: 50%),
+    edge(<d>, <b>, "-->", bend: -20deg, stroke: blue + 2.5pt, mark-scale: 50%),
     edge(<c>, <d>, "-|>", bend: -20deg),
     edge(<d>, <c>, "-|>", bend: -20deg),
 
@@ -611,7 +615,60 @@
 #slide(title: [#h(1em)Improvements])[
   *Graph simplification* to remove vertices with determined winner
 
-  // TODO: Drawing
+  #v(1em)
+  #pause
+
+  #let n0 = (n, p, c) => node(name: n, p, text(fill: blue, [#c]), radius: 1em)
+  #let n1 = (n, p, c) => node(name: n, p, text(fill: blue, [#c]), radius: 1em, shape: fletcher.shapes.rect)
+  #let e = (a, b, ..args) => edge(a, b, "-|>", ..args)
+  #align(center, diagram(
+    node-stroke: 1pt,
+    spacing: 2em,
+    label-sep: 3pt,
+
+    n1(<0>, (0, 0), 0),
+    n0(<1>, (1, 0), 1),
+    n1(<2>, (2, 0), 3),
+    n0(<3>, (3, 0), 2),
+    n0(<4>, (0, 1), 0),
+    n1(<5>, (1, 1), 1),
+    n0(<6>, (2, 1), 1),
+    n1(<7>, (3, 1), 4),
+
+    e(<4>, <0>),
+    e(<4>, <5>),
+    e(<0>, <1>, shift: 3pt, bend: 10deg),
+    e(<1>, <0>, shift: 3pt, bend: 10deg),
+    e(<5>, <1>),
+    e(<5>, <6>),
+    e(<6>, <2>),
+    e(<2>, <3>, shift: 3pt, bend: 10deg),
+    e(<3>, <2>, shift: 3pt, bend: 10deg),
+    e(<3>, <7>, shift: 3pt, bend: 10deg),
+    e(<7>, <3>, shift: 3pt, bend: 10deg),
+    e(<7>, <6>),
+
+    node(name: <o0>, (0, -1), $...$, stroke: none),
+    node(name: <o1>, (1, -1), $...$, stroke: none),
+    node(name: <o3>, (3, -1), $...$, stroke: none),
+
+    edge(<0>, <o0>, "..>"),
+    edge(<1>, <o1>, "..>"),
+    edge(<3>, <o3>, "..>"),
+
+    pause,
+
+    node("", enclose: (<2>, <3>, <6>, <7>), inset: 0.6em),
+
+    pause,
+    
+    node(name: <tl>, (1.45, -0.6), ""),
+    node(name: <tr>, (3.7, -0.6), ""),
+    node(name: <bl>, (1.45, 1.7), ""),
+    node(name: <br>, (3.7, 1.7), ""),
+    edge(<tl>, <br>, stroke: red + 2pt),
+    edge(<bl>, <tr>, stroke: red + 2pt),
+  ))
 ]
 
 #new-section[Implementation]
