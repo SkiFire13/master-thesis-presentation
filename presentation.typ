@@ -84,7 +84,7 @@
 
   #meanwhile
 
-  #place(bottom + right, dx: 1em, dy: 1em, text(font: "New Computer Modern", size: 19pt)[ \[De Bakker, Kozen\] ])
+  #place(bottom + right, dx: 1em, text(font: "New Computer Modern", size: 19pt)[ \[De Bakker, Kozen\] ])
 ]
 
 #slide[
@@ -252,11 +252,37 @@
 ]
 
 #new-section[Strategy iteration]
+
 #slide[
-  - Idea: *improve* strategy for player 0 until optimal
+  - *Strategy*: function from vertex to the move to perform
+
+    - note: it assumes all vertices have at least one succ.
 
   #pause
 
+  - A vertex is winning iff the player has a *winning strategy*
+  
+  #pause
+  #v(1em)
+
+  - Idea:
+
+    - *Fix* a strategy $phi$ for player 0
+
+    #pause
+
+    - Compute an optimal strategy for player 1 *against* $phi$
+
+    #pause
+
+    - Improve $phi$ based on the induced plays
+
+  #meanwhile
+
+  #place(bottom + right, dx: 1em, text(font: "New Computer Modern", size: 19pt)[ \[Vöge, Jurdziński\] ])
+]
+
+#slide[
   - Criteria: *play profiles* $(w, P, e)$
 
     - $w$, the most relevant vertex of the cycle
@@ -267,16 +293,20 @@
 
   #pause
 
-  - Play profiles are *ordered*
+  - Ordered based on how much they favor to player 0
 
   #pause
-  #v(1.3em)
+
+  - Optimal strategy picks the succ. with the best play profile
+
+  #pause
+  #v(1.5em)
 
   - Issue: global algorithm
 
   #meanwhile
 
-  #place(bottom + right, dx: 1em, dy: 2em, text(font: "New Computer Modern", size: 19pt)[ \[Vöge, Jurdziński\] ])
+  #place(bottom + right, dx: 1em, text(font: "New Computer Modern", size: 19pt)[ \[Vöge, Jurdziński\] ])
 ]
 
 #new-section[Local strategy iteration]
@@ -302,7 +332,7 @@
 
   #meanwhile
 
-  #place(top + right, dx: 1em, dy: -2em, diagram(
+  #place(top + right, dx: 1em, dy: 2em, diagram(
     node-stroke: 1pt,
     label-sep: 3pt,
 
@@ -317,7 +347,7 @@
 
     pause,
 
-    node((-0.2, -0.15), name: <p3>, radius: 2.5pt, stroke: none),
+    node((-0.2, -0.15), name: <p3>, radius: 2.5pt, fill: black, stroke: none),
     edge(<p2>, <p3>, "..>", stroke: (dash: "dashed"), bend: 30deg),
 
     pause,
@@ -327,7 +357,7 @@
 
   #meanwhile
 
-  #place(bottom + right, dx: 1em, dy: 2.7em, text(font: "New Computer Modern", size: 19pt)[ \[Friedmann, Lange\] ])
+  #place(bottom + right, dx: 1em, text(font: "New Computer Modern", size: 19pt)[ \[Friedmann, Lange\] ])
 ]
 
 #new-section[Adapting the algorithm]
