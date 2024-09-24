@@ -583,12 +583,15 @@
 
   - idea:
 
+    - play profiles for existing vertices are known
+
+    #pause
+
     - the strategy is fixed for all newly expanded vertices
 
-    // TODO: Reword better
-    - the path starting from newly expanded vertices is unique
+    #pause
 
-    - thus compute the play profile for that play
+    - only need to consider the new plays
 ]
 
 #slide(title: [#h(1em)Improvements])[
