@@ -198,7 +198,10 @@
 
 #slide[
   $
-    X feq_mu {0} union X union {x + 2 | x in X}
+    X feq_mu f(X) #h(2em) #block($
+      f &: &&2^bb(N) -> 2^bb(N) \
+      f(X) &= &&{0} union X union {x + 2 | x in X}
+    $)
   $
 
   #pause
